@@ -10,6 +10,6 @@ fn main() {
         .expect("Failed to read line");
 
 
-    println!("invalid");
+    println!("{command}: command not found");
     io::stdout().flush().unwrap();
 }
