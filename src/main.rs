@@ -11,7 +11,7 @@ fn main() {
 }
 
 fn display_prompt_dollar_sign() {
-    print!("$");
+    print!("$ ");
     io::stdout().flush().unwrap()
 }
 
