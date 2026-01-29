@@ -10,6 +10,7 @@ fn main() {
         .expect("Failed to read line");
 
 
-    println!("{command}: command not found");
+    let mut trimmed = command.trim();
+    println!("{trimmed}: command not found");
     io::stdout().flush().unwrap();
 }
