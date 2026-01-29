@@ -9,8 +9,5 @@ fn main() {
     io::stdin().read_line(&mut command)
         .expect("Failed to read line");
 
-
-    let mut trimmed = command.trim();
-    println!("{trimmed}: command not found");
-    io::stdout().flush().unwrap();
+    println!("{}: command not found", command.trim());
 }
