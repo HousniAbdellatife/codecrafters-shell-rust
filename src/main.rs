@@ -1,13 +1,28 @@
 #[allow(unused_imports)]
 use std::io::{self, Write};
+use std::io::Read;
 
 fn main() {
-    print!("$ ");
-    io::stdout().flush().unwrap();
+    loop {
+        display_prompt_dollar_sign();
+        let command  = read_command();
+        evaluate(command);
+    }
+}
 
+fn display_prompt_dollar_sign() {
+    print!("$");
+    io::stdout().flush().unwrap()
+}
+
+fn read_command() -> String {
     let mut command = String::new();
     io::stdin().read_line(&mut command)
-        .expect("Failed to read line");
+        .expect("Failed");
 
+    command
+}
+
+fn evaluate(command: String) {
     println!("{}: command not found", command.trim());
 }
