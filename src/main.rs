@@ -6,6 +6,7 @@ fn main() {
     loop {
         display_prompt_dollar_sign();
         let command  = read_command();
+        if command.eq("exit") { break }
         evaluate(command);
     }
 }
@@ -20,7 +21,7 @@ fn read_command() -> String {
     io::stdin().read_line(&mut command)
         .expect("Failed");
 
-    command
+    command.trim().to_string()
 }
 
 fn evaluate(command: String) {
