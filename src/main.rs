@@ -4,24 +4,22 @@ use std::io::{self, Write};
 fn main() {
     loop {
         display_prompt_dollar_sign();
-        let command  = read_command();
-        if command.eq("exit") { break }
 
-        match command.split_ascii_whitespace().next().unwrap() {
+        let input = read_command();
+        let command: Vec<&str> = input.split_whitespace().collect();
+        let cmd = command[0];
+        let args = &command[1..];
+
+        match cmd {
             "exit" => break,
-            "echo" => echo(&command),
-            _ => evaluate(command)
+            "echo" => echo(args),
+            _ => evaluate(cmd)
         }
     }
 }
 
-fn echo (cmd: &String) {
-    let arg: String = cmd.split_ascii_whitespace()
-        .skip(1)
-        .collect::<Vec<&str>>()
-        .join(" ");
-
-    println!("{}", arg);
+fn echo (args: &[&str]) {
+    println!("{}", args.join(" "));
 }
 
 fn display_prompt_dollar_sign() {
@@ -37,6 +35,6 @@ fn read_command() -> String {
     command.trim().to_string()
 }
 
-fn evaluate(command: String) {
-    println!("{}: command not found", command.trim());
+fn evaluate(cmd: &str) {
+    println!("{}: command not found", cmd.trim());
 }
