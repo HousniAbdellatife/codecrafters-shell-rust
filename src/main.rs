@@ -1,14 +1,27 @@
 #[allow(unused_imports)]
 use std::io::{self, Write};
-use std::io::Read;
 
 fn main() {
     loop {
         display_prompt_dollar_sign();
         let command  = read_command();
         if command.eq("exit") { break }
-        evaluate(command);
+
+        match command.split_ascii_whitespace().next().unwrap() {
+            "exit" => break,
+            "echo" => echo(&command),
+            _ => evaluate(command)
+        }
     }
+}
+
+fn echo (cmd: &String) {
+    let arg: String = cmd.split_ascii_whitespace()
+        .skip(1)
+        .collect::<Vec<&str>>()
+        .join(" ");
+
+    println!("{}", arg);
 }
 
 fn display_prompt_dollar_sign() {
