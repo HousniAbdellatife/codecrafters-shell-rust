@@ -2,7 +2,7 @@
 use std::io::{self, Write};
 
 
-const COMMANDS: [&str; 1] = [""];
+const COMMANDS: [&str; 3] = ["echo", "type", "exit"];
 
 fn main() {
     loop {
@@ -16,7 +16,7 @@ fn main() {
         match cmd {
             "exit" => break,
             "echo" => echo(args),
-            "type" => find_type(cmd),
+            "type" => find_type(args[0]),
             _ => evaluate(cmd)
         }
     }
