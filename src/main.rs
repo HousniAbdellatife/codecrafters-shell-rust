@@ -26,7 +26,7 @@ fn find_type(p0: &str) {
     if COMMANDS.contains(&p0) {
         println!("{} is a shell builtin", p0);
     }else {
-        println!("invalid_command: not found");
+        println!("{}: not found", p0);
     }
 }
 
