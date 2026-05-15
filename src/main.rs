@@ -9,9 +9,9 @@ fn main() {
         display_prompt_dollar_sign();
 
         let input = read_command();
-        let command: Vec<&str> = input.split_whitespace().collect();
-        let cmd = command[0];
-        let args = &command[1..];
+        let command: Vec<String> = shell_words::split(&input).unwrap();
+        let cmd = command[0].as_str();
+        let args = &command[1..].iter().map(|arg| arg.as_str()).collect::<Vec<&str>>();
 
         match cmd {
             "exit" => break,
